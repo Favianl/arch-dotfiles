@@ -1,3 +1,5 @@
+$HOME/.screenlayout/monitor.sh &
+feh --bg-scale Pictures/wallpaper.jpg &
 redshift &
 sxhkd &
 exec bspwm
