@@ -3,9 +3,25 @@
 #
 #sudo pacman -S bspwm polybar kitty rofi sxhkd nemo nemo-fileroller neofetch htop fzf xf86-video-vesa xf86-video-ati xf86-video-amdgpu vulkan-radeon vulkan-icd-loader xorg-server xorg-xinit xorg-xev xorg mesa mesa-demos gvfs ntfs-3g leafpad picom feh lxappearance arandr neovim lsd bat vlc gpicview evince zip unzip unrar firefox base-devel yad xdotool imagemagick drawing inkscape redshift tree xclip ttf-jetbrains-mono-nerd python3 python-pip locate stylua discord telegram-desktop veracrypt scrcpy obs-studio noise-suppression-for-voice mariadb dbeaver mpv --noconfirm
 
-sudo pacman -S bspwm polybar kitty rofi sxhkd nemo nemo-fileroller neofetch lightdm lightdm-gtk-greeter htop fzf xf86-video-vesa xf86-video-ati xf86-video-amdgpu vulkan-radeon vulkan-icd-loader xorg-server xorg-xinit xorg-xev xorg mesa mesa-demos gvfs ntfs-3g leafpad picom feh lxappearance arandr neovim lsd bat firefox base-devel redshift xclip ttf-jetbrains-mono-nerd python3 python-pip locate stylua calcurse pavucontrol pipewire-pulse papirus-icon-theme gtk3 gtk4 --noconfirm
+sudo pacman -S bspwm polybar kitty rofi sxhkd nemo nemo-fileroller neofetch lightdm lightdm-gtk-greeter htop fzf xf86-video-vesa xf86-video-ati xf86-video-amdgpu vulkan-radeon vulkan-icd-loader xorg-server xorg-xinit xorg-xev xorg mesa mesa-demos gvfs ntfs-3g leafpad picom feh lxappearance arandr neovim fd lsd bat firefox base-devel redshift vlc evince zip unzip unrar base-devel yad xdotool drawing inkscape redshift tree xclip ttf-jetbrains-mono-nerd python3 python-pip locate stylua calcurse pavucontrol pipewire-pulse papirus-icon-theme gtk3 gtk4 discord telegram-desktop veracrypt scrcpy obs-studio noise-suppression-for-voice mariadb dbeaver mpv qemu-full libvirt virt-manager iptables dnsmasq dmidecode bridge-utils openbsd-netcat --noconfirm
 
-cp -r config/* ~/.config/
+mkdir ~/.config/
+rm -rf ~/.config/bspwm
+ln -s $HOME/arch-dotfiles/config/bspwm/ ~/.config/bspwm
+rm -rf ~/.config/kitty
+ln -s $HOME/arch-dotfiles/config/kitty/ ~/.config/kitty
+rm -rf ~/.config/nvim
+ln -s $HOME/arch-dotfiles/config/nvim/ ~/.config/nvim
+rm -rf ~/.config/picom
+ln -s $HOME/arch-dotfiles/config/picom/ ~/.config/picom
+rm -rf ~/.config/polybar
+ln -s $HOME/arch-dotfiles/config/polybar/ ~/.config/polybar
+rm -rf ~/.config/redshift
+ln -s $HOME/arch-dotfiles/config/redshift/ ~/.config/redshift
+rm -rf ~/.config/rofi
+ln -s $HOME/arch-dotfiles/config/rofi/ ~/.config/rofi
+rm -rf ~/.config/sxhkd
+ln -s $HOME/arch-dotfiles/config/sxhkd/ ~/.config/sxhkd
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" &
 wait

@@ -1,0 +1,19 @@
+{
+  "name": "leo-custom",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/js.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/js-react.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/ts-react.json"
+      }
+    ]
+  }
+}
