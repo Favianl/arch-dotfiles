@@ -23,6 +23,8 @@ rm -rf ~/.config/sxhkd
 ln -s $HOME/arch-dotfiles/config/sxhkd/ ~/.config/sxhkd
 rm -rf ~/.config/dunst
 ln -s $HOME/arch-dotfiles/config/dunst/ ~/.config/dunst
+rm -rf ~/.config/pipewire
+ln -s $HOME/arch-dotfiles/config/pipewire/ ~/.config/pipewire
 
 ln -s $HOME/arch-dotfiles/scripts/ ~/my-scripts
 
