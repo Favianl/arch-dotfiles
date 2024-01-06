@@ -1,6 +1,6 @@
 configuration {
 	modi:				"drun";
-	font:				"mononoki Nerd Font Medium 12";
+	font:				"JetBrainsMono Nerd Font Medium 12";
 	show-icons:                     true;
 	icon-theme: 			"Reversal-dark";
 	display-drun: 			"";
@@ -11,10 +11,9 @@ configuration {
 @theme "/dev/null"
 
 * {
-	bg:				#151515;
-	fg:				#e8e8d3;
-	accent:				#687363;
-	button:				#1c1c1c;
+	bg:				#1a1b26;
+	fg:				#c0caf5;
+	button:				#24283b;
 
 	background-color:		@bg;
 	text-color:			@fg;
@@ -30,7 +29,7 @@ prompt {
 	background-color:		@button;
 	enabled:			true;
 	padding:			0.5% 32px 0% -0.5%;
-	font:				"mononoki Nerd Font Medium 12";
+	font:				"JetBrainsMono Nerd Font Medium 12";
 }
 
 entry {
@@ -67,6 +66,7 @@ mainbox {
 element {
     	orientation:                    vertical;
     	padding:                        2% 0% 2% 0%;
+    	border-radius:                  6px;
 }
 
 element-icon {

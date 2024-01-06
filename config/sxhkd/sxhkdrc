@@ -1,12 +1,10 @@
-#
-# wm independent hotkeys
-#
+
 
 # terminal emulator
 super + Return
   kitty	
 
-# program launcher
+# prograr launcher
 super + @space
 	rofi -show drun
 
@@ -15,24 +13,38 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 # Mis atajos ocupados(i,o,m,g,y,h,f,b,l,c,p,b)
-super + a
-					leafpad ~/atajos-ayuda.txt
+# super + a
+# 					leafpad ~/atajos-ayuda.txt
 
 super + f
 				  nemo	
 
 super + b
-				  firefox	
+				  brave	
 
 super + c
-					bspc rule -a gnome-calculator -o state=floating; gnome-calculator
+					bspc rule -a gnome-calculator -o state=floating; GTK_THEME=Tokyonight-Dark-BL-LB gnome-calculator
+
 
 alt + l
 					leafpad
-#
+
+alt + F4
+          ~/.config/polybar/scripts/powermenu.sh
+
+# Show clipmenu on rofi
+alt + v
+    CM_LAUNCHER=rofi clipmenu \
+        -no-show-icons \
+        -theme-str '* \{ font: "JetBrainsMono Nerd Font Medium 10"; \}' \
+        -theme-str 'window \{ width: 30%; \}' \
+        -theme-str 'listview \{ spacing: 0; columns: 1; \}' \
+        -theme-str 'element \{border: 1px; border-color: #24283b; margin: 3px; \}' \
+        -theme-str 'element-text \{horizontal-align: 0; \}'
+
 # bspwm hotkeys
 #
-
+#
 # quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
@@ -67,8 +79,8 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# super + {t,shift + t,s,f}
+# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -87,22 +99,41 @@ super + {t,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
+super + {_,shift + }r
 	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + shift + {h,l}
 	bspc desktop -f {prev,next}.local
 
+
+# move the current window to next desktop in the current monitor
+super + ctrl + l 
+  bspc node -d next --to-desktop next 
+# move the current window to previous desktop in the current monitor
+super + ctrl + h 
+  bspc node -d prev --to-desktop prev 
+
+
+# move the current window to next/previous desktop in the current monitor and follow
+super + alt + {h,l}
+  bspc node -d {prev,next}.local --follow;
+
 # focus the last node/desktop
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# focus the first/last of all desktops occupied
+super + {i,o} 
+  bspc desktop -f $(bspc query -D -d .occupied | {head,tail} -n 1)
+
+	# bspc wm -h off; \
+	# bspc node {older,newer} -f; \
+	# bspc wm -h on
+
+# Rotate tree
+super + shift + {d,a}
+    bspc node @/ -C {forward,backward}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
@@ -112,8 +143,10 @@ super + {_,shift + }{1-9,0}
 # preselect
 #
 
+super + ctrl + shift {Left,Down,Up,Right}
+	bspc node -p {left,down,top,rignt}
 # preselect the direction
-super + ctrl + {h,j,k,l}
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
@@ -133,7 +166,7 @@ super + ctrl + shift + space
 #
 
 # expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
+super + alt + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
@@ -144,33 +177,39 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-
+# Expand/contract a window by moving one of its side outward/inward
+super + s : {h,j,k,l}
+    STEP=20; SELECTION={1,2,3,4}; \
+    bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+    bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
 
 
 
 
 # Volume control - Teclado mecanico halion
 
-KP_Add
-      pamixer --increase 5
+# KP_Add
+#       pamixer --increase 5
+#
+# KP_Subtract
+#       pamixer --decrease 5
+#
+# KP_Enter
+#       pamixer --toggle-mute
 
-KP_Subtract
-      pamixer --decrease 5
 
-KP_Enter
-      pamixer --toggle-mute
 
 
 # Volume control
 
-#XF86AudioRaiseVolume
-#      pamixer --increase 5
+XF86AudioRaiseVolume
+      ~/my-scripts/volume-control.sh up 
 
-#XF86AudioLowerVolume
-#      pamixer --decrease 5
+XF86AudioLowerVolume
+      ~/my-scripts/volume-control.sh down 
 
-#XF86AudioMute
-#      pamixer --toggle-mute
+XF86AudioMute
+      ~/my-scripts/volume-control.sh toggle 
 	
 # Music control
 #XF86Audio{Next,Prev,Play,Stop}
@@ -178,12 +217,14 @@ KP_Enter
 
 
 
-# Captura de pantalla
+# Screenshot Area
 super + Print
-	import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').jpg
-# Capturar un area, 2 veces .. bug?
+  flameshot gui 
+
+# Full Screenshot 
 Print
-	import root ~/Pictures/$(date '+%Y%m%d-%H%M%S').jpg
+  flameshot full -p ~/Pictures/capture
+
 
 
 
