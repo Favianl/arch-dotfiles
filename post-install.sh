@@ -15,6 +15,6 @@ cd ..
 rm -rf yay-bin
 
 echo "Brave installing..."
-yay -S brave-bin
+yay -S brave-bin dropbox nemo-dropbox --noconfirm
 
 echo 'QT_QPA_PLATFORMTHEME="qt5ct"' | sudo tee -a /etc/environment
