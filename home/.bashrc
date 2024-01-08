@@ -137,6 +137,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.local/bin:$PATH"
 
 
-#scripts
-export PATH="$PATH:/home/leo/dotfiles/qemu"
+#start virt path
+#export PATH="$PATH:/home/leo/arch-dotfiles/qemu-start"
 
