@@ -1,5 +1,9 @@
 return {
 	"nvimtools/none-ls.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvimtools/none-ls-extras.nvim",
+	},
 	config = function()
 		local status, null_ls = pcall(require, "null-ls")
 		if not status then
@@ -7,7 +11,7 @@ return {
 		end
 
 		local formatting = null_ls.builtins.formatting
-		local diagnostics = null_ls.builtins.diagnostics
+		-- local diagnostics = null_ls.builtins.diagnostics
 
 		-- to setup format on save
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -16,7 +20,8 @@ return {
 			sources = {
 				formatting.prettier,
 				formatting.stylua,
-				diagnostics.eslint,
+				-- diagnostics.eslint,
+				require("none-ls.diagnostics.eslint"),
 			},
 
 			-- configure format on save

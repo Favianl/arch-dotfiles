@@ -23,7 +23,8 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"tsserver",
+				-- "tsserver",
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -36,7 +37,7 @@ return {
 			ensure_installed = {
 				-- "prettier",
 				"stylua",
-				-- "eslint_d",
+				"eslint_d",
 			},
 		})
 	end,

@@ -32,3 +32,4 @@ bspc rule -a vlc state=floating
 bspc rule -a TelegramDesktop:telegram-desktop state=floating
 bspc rule -a Virt-manager state=floating
 bspc rule -a Dbeaver state=floating
+bspc rule -a feh state=floating

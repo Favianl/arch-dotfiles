@@ -8,6 +8,13 @@ return {
 			return
 		end
 
-		bufferline.setup()
+		bufferline.setup({
+			options = {
+				indicator = {
+					icon = "", -- this should be omitted if indicator style is not 'icon'
+					-- style = "icon" | "underline" | "none",
+				},
+			},
+		})
 	end,
 }

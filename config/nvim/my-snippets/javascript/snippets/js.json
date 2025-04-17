@@ -1,1 +1,12 @@
-{}
+{
+  "anonymousFunction": {
+    "prefix": "anfn",
+    "body": ["(${1:first}) => { ${2:second} }"],
+    "description": "Creates an anonymous function"
+  },
+  "namedFunction": {
+    "prefix": "nfn",
+    "body": ["const ${1:first} = (${2:second}) => { ${3:third} }"],
+    "description": "Creates a named function"
+  }
+}

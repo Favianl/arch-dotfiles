@@ -1,0 +1,32 @@
+[/]
+calculator=['<Super>c']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']
+home=['<Super>e']
+magnifier-zoom-in=['<Alt><Super>plus']
+screensaver=['<Super>plus']
+www=['<Super>b']
+
+[custom-keybindings/custom0]
+binding='<Super>Return'
+command='kitty'
+name='Open kitty terminal'
+
+[custom-keybindings/custom1]
+binding='<Super>f'
+command='nautilus --new-window'
+name='Open Files'
+
+[custom-keybindings/custom2]
+binding='<Alt><Super>o'
+command='gnome-session-quit --power-off'
+name='power off'
+
+[custom-keybindings/custom3]
+binding='<Shift><Super>r'
+command='gnome-session-quit --reboot'
+name='reboot'
+
+[custom-keybindings/custom4]
+binding='KP_Subtract'
+command='pactl set-source-mute @DEFAULT_SOURCE@ toggle'
+name='toggle mic'

@@ -10,7 +10,7 @@ fi
 # Get the microphone status (mute/unmute)
 mic_status=$(pactl list sources | awk -v mic_source="$mic_source" '/^Source/ {in_source=0} $0 ~ ("Name: " mic_source) {in_source=1} in_source && /Mute:/ {print $2}')
 
-mic_volume=$(pactl list sources | awk -v mic_source="$mic_source" '/^Source/ {in_source=0} $0 ~ ("Name: " mic_source) {in_source=1} in_source && /Volume:/ {print $5}')
+# mic_volume=$(pactl list sources | awk -v mic_source="$mic_source" '/^Source/ {in_source=0} $0 ~ ("Name: " mic_source) {in_source=1} in_source && /Volume:/ {print $5}')
 
 # Convert the volume to percentage
 #
@@ -19,7 +19,7 @@ mic_volume=$(pactl list sources | awk -v mic_source="$mic_source" '/^Source/ {in
 # Check the microphone status and set the output accordingly
 if [ "$mic_status" == "yes" ]; then
    #echo " Muted"
-   echo ""
+   echo " "
 else
    #echo " $mic_percentage%"
    echo ""

@@ -2,6 +2,12 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+keymap.set("v", "<leader>p", function()
+	local val = vim.fn.getreg("+")
+	vim.api.nvim_command([[normal! p]])
+	vim.fn.setreg("+", val)
+end, { desc = "Special paste, paste without replacing copy register content" })
+
 -- general keymaps
 
 ----- Quit ----
@@ -17,7 +23,7 @@ keymap.set("n", "<leader>0", ":q!<CR>")
 keymap.set("i", "jk", "<Esc>")
 
 ------ Remove search highlight ------
-keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>")
+keymap.set("n", "<leader><Esc>", ":nohlsearch<CR>")
 
 ------ Open/Close Neotree ------
 keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
@@ -59,7 +65,7 @@ keymap.set("n", "<leader>bt", "<cmd>BufferLineSortByTabs<cr>")
 -- Avoid replacing clipboard register
 -- keymap.set("v", "<leader>p", '"_dp')
 
-keymap.set("v", "<leader>p", '"_dhp')
+-- keymap.set("v", "<leader>p", '"_dhp')
 
 -- keymap.set("v", "<leader>p", '_"0p')
 -- keymap.set("n", "<leader>p", '"0p')
@@ -72,3 +78,5 @@ keymap.set("n", "<leader>ho", "<cmd>HopChar1<cr>")
 keymap.set("n", "<leader>ht", "<cmd>HopChar2<cr>")
 
 keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+keymap.set("n", "<leader>r", "<Plug>RestNvim")
