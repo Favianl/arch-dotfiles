@@ -7,6 +7,10 @@
         "path": "./snippets/js.json"
       },
       {
+        "language": "typescript",
+        "path": "./snippets/js.json"
+      },
+      {
         "language": "javascriptreact",
         "path": "./snippets/js-react.json"
       },

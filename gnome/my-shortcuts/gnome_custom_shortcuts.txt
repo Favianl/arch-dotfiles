@@ -1,6 +1,6 @@
 [/]
 calculator=['<Super>c']
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/']
 home=['<Super>e']
 magnifier-zoom-in=['<Alt><Super>plus']
 screensaver=['<Super>plus']
@@ -30,3 +30,13 @@ name='reboot'
 binding='KP_Subtract'
 command='pactl set-source-mute @DEFAULT_SOURCE@ toggle'
 name='toggle mic'
+
+[custom-keybindings/custom6]
+binding='<Alt>o'
+command='dialect'
+name='open translator'
+
+[custom-keybindings/custom7]
+binding='<Alt>n'
+command='/bin/bash -c "$HOME/arch-dotfiles/scripts/open-obsidian-neovim.sh"'
+name='open neovim with obsidian'

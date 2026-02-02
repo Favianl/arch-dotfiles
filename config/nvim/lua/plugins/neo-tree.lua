@@ -12,12 +12,35 @@ return {
 		vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 
 		-- If you want icons for diagnostic errors, you'll need to define them somewhere:
-		vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-		vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-		vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-		vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵 ", texthl = "DiagnosticSignHint" })
+		-- vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+		-- vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+		-- vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+		-- vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵 ", texthl = "DiagnosticSignHint" })
 		-- NOTE: this is changed from v1.x, which used the old style of highlight groups
 		-- in the form "LspDiagnosticsSignWarning"
+
+		vim.diagnostic.config({
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.INFO] = "󰋼",
+					[vim.diagnostic.severity.HINT] = "󰌵",
+				},
+				texthl = {
+					[vim.diagnostic.severity.ERROR] = "Error",
+					[vim.diagnostic.severity.WARN] = "Warn",
+					[vim.diagnostic.severity.INFO] = "Info",
+					[vim.diagnostic.severity.HINT] = "Hint",
+				},
+				numhl = {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.INFO] = "",
+					[vim.diagnostic.severity.HINT] = "",
+				},
+			},
+		})
 
 		require("neo-tree").setup({
 			close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
@@ -150,6 +173,7 @@ return {
 			},
 			nesting_rules = {},
 			filesystem = {
+				follow_current_file = { enabled = true },
 				filtered_items = {
 					visible = false, -- when true, they will just be displayed differently than normal items
 					hide_dotfiles = true,
@@ -173,7 +197,6 @@ return {
 						--".null-ls_*",
 					},
 				},
-				follow_current_file = false, -- This will find and focus the file in the active buffer every
 				-- time the current file is changed while the tree is open.
 				group_empty_dirs = false, -- when true, empty folders will be grouped together
 				hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree

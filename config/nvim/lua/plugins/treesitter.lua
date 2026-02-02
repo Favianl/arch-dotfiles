@@ -1,8 +1,9 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+	branch = "master",
+	lazy = false,
 	build = ":TSUpdate",
-	event = "VeryLazy",
+	-- dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 	config = function()
 		local status, treesitter = pcall(require, "nvim-treesitter.configs")
 		if not status then
@@ -19,7 +20,9 @@ return {
 				"http",
 				"json",
 				"javascript",
+				"typescript",
 				"tsx",
+				"astro",
 				"html",
 				"css",
 				"markdown",
@@ -27,6 +30,9 @@ return {
 				"bash",
 				"lua",
 				"vim",
+			},
+			textsubjects = {
+				enable = true,
 			},
 			auto_install = true,
 			-- context_commentstring = {

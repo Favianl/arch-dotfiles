@@ -9,6 +9,7 @@ return {
 		"hrsh7th/cmp-git",
 		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind-nvim",
+		"uga-rosa/cmp-dictionary",
 		{
 			"L3MON4D3/LuaSnip",
 			version = "v2.*",
@@ -33,6 +34,19 @@ return {
 		if not lspkind_status then
 			return
 		end
+
+		local dic_status, dic = pcall(require, "cmp_dictionary")
+		if not dic_status then
+			return
+		end
+
+		dic.setup({
+			paths = {
+				vim.fn.expand("~/.config/nvim/dictionaries/en.txt"),
+				vim.fn.expand("~/.config/nvim/dictionaries/es.txt"),
+			},
+			exact_length = 3,
+		})
 
 		-- load snippets from path/of/your/nvim/config/my-cool-snippets
 		require("luasnip.loaders.from_vscode").lazy_load({ paths = "./my-snippets/javascript" })
@@ -96,6 +110,10 @@ return {
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
+				{
+					name = "dictionary",
+					keyword_length = 3,
+				},
 			}),
 			formatting = {
 				format = lspkind.cmp_format({
@@ -107,6 +125,7 @@ return {
 						nvim_lsp = "[LSP]",
 						luasnip = "[LuaSnip]",
 						nvim_lua = "[Lua]",
+						dictionary = "[Dict]",
 						latex_symbols = "[Latex]",
 					},
 				}),

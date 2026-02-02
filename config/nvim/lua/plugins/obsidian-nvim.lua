@@ -19,7 +19,7 @@ return {
 			min_chars = 2,
 		},
 		notes_subdir = "box",
-		new_notes_location = "box",
+		new_notes_location = "notes_subdir",
 
 		attachments = {
 			img_folder = "files",
@@ -27,36 +27,6 @@ return {
 
 		daily_notes = {
 			template = "note",
-		},
-
-		mappings = {
-			-- "Obsidian follow"
-			["<leader>nf"] = {
-				action = function()
-					return require("obsidian").util.gf_passthrough()
-				end,
-				opts = { noremap = false, expr = true, buffer = true },
-			},
-			-- Toggle check-boxes "obsidian done"
-			["<leader>nd"] = {
-				action = function()
-					return require("obsidian").util.toggle_checkbox()
-				end,
-				opts = { buffer = true },
-			},
-			-- Create a new newsletter issue
-			["<leader>nn"] = {
-				action = function()
-					return require("obsidian").commands.new_note("Newsletter-Issue")
-				end,
-				opts = { buffer = true },
-			},
-			["<leader>nt"] = {
-				action = function()
-					return require("obsidian").util.insert_template("Newsletter-Issue")
-				end,
-				opts = { buffer = true },
-			},
 		},
 
 		-- Function to generate frontmatter for notes
@@ -103,4 +73,27 @@ return {
 			enable = false,
 		},
 	},
+
+	config = function(_, opts)
+		-- Initialize the obsidian.nvim plugin with the options you defined above.
+		require("obsidian").setup(opts)
+
+		vim.keymap.set("n", "<leader>of", function()
+			return require("obsidian").util.gf_passthrough()
+		end, { desc = "Obsidian: Follow link or file", buffer = true })
+
+		vim.keymap.set("n", "<leader>oc", function()
+			return require("obsidian").util.toggle_checkbox()
+		end, { desc = "Obsidian: Toggle checkbox", buffer = true })
+
+		vim.keymap.set("n", "<cr>", function()
+			return require("obsidian").util.smart_action()
+		end, { desc = "Obsidian: Smart action (link/checkbox)", buffer = true, expr = true })
+
+		vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Obsidian: Search notes" })
+		vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Obsidian: Create new note" })
+		vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Obsidian: Insert template" })
+		vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Obsidian: Show backlinks" })
+		vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Obsidian: Rename note and links" })
+	end,
 }

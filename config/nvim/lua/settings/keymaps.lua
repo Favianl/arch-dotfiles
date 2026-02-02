@@ -22,11 +22,21 @@ keymap.set("n", "<leader>0", ":q!<CR>")
 --- shortcut Escape from insert mode
 keymap.set("i", "jk", "<Esc>")
 
+keymap.set("n", "<leader><leader>ca", "ggVGy", { desc = "Copy all" })
 ------ Remove search highlight ------
 keymap.set("n", "<leader><Esc>", ":nohlsearch<CR>")
 
 ------ Open/Close Neotree ------
-keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
+-- keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
+
+vim.keymap.set("n", "<leader>e", function()
+	local root = require("utils.root").get_root()
+
+	require("neo-tree.command").execute({
+		toggle = true,
+		dir = root,
+	})
+end, { desc = "Neo-tree project root" })
 
 -- move line normal mode
 keymap.set("n", "<A-j>", ":m .+1<CR>==")
@@ -79,4 +89,12 @@ keymap.set("n", "<leader>ht", "<cmd>HopChar2<cr>")
 
 keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
-keymap.set("n", "<leader>r", "<Plug>RestNvim")
+----- Obsidian -----
+vim.keymap.set("n", "<leader>oc", "<cmd>ObsidianCheck<CR>", { desc = "Obsidian Check Checkbox" })
+vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Obsidian Template" })
+vim.keymap.set("n", "<leader>oo", "<cmd>Obsidian Open<CR>", { desc = "Open in Obsidian App" })
+vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Show ObsidianBacklinks" })
+vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", { desc = "Show ObsidianLinks" })
+vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Create New Note" })
+vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search Obsidian" })
+vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick Switch" })

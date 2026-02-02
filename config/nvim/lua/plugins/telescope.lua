@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.5",
+	tag = "0.1.8",
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -33,7 +33,14 @@ return {
 
 		local builtin = require("telescope.builtin")
 
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+		vim.keymap.set("n", "<leader>ff", function()
+			local root = require("utils.root")
+			require("telescope.builtin").find_files({
+				cwd = root.get_root(),
+			})
+		end, { desc = "Find Files" })
+
+		-- vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 		-- vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
 		vim.keymap.set("n", "<leader>fl", builtin.live_grep, {})
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, {})

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -S zsh kitty git clipmenu fastfetch htop fzf ntfs-3g neovim fd lsd bat firefox redshift vlc zip unzip unrar yad xdotool drawing inkscape gimp tree xclip ttf-jetbrains-mono-nerd python3 python-pip locate stylua discord telegram-desktop veracrypt scrcpy obs-studio noise-suppression-for-voice dbeaver mpv qemu-full libvirt virt-manager iptables dnsmasq dmidecode bridge-utils openbsd-netcat --noconfirm
+sudo pacman -S zsh kitty git clipmenu fastfetch htop fzf ntfs-3g neovim fd lsd bat firefox redshift vlc zip unzip unrar yad drawing inkscape gimp tree xclip ttf-jetbrains-mono-nerd python3 python-pip locate stylua discord telegram-desktop veracrypt scrcpy obs-studio noise-suppression-for-voice dbeaver mpv qemu-full libvirt virt-manager iptables dnsmasq dmidecode bridge-utils openbsd-netcat yt-dlp docker jdk8-openjdk mesa xf86-video-amdgpu xorg-xrandr xdotool xorg-xinput xorg-xev lazygit dialect vulkan-tools vulkan-radeon lib32-vulkan-radeon wine winetricks dxvk mangohud lib32-mangohud snes9x snes9x-gtk zenity --noconfirm
 
 rm -rf ~/.config/kitty
 ln -s $HOME/arch-dotfiles/config/kitty/ ~/.config/kitty
@@ -22,7 +22,7 @@ sleep 3
 
 cp -r home/. ~/
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 
 source ~/.zshrc
 
@@ -32,6 +32,7 @@ sleep 3
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 
 echo "Zsh plugins installing..."
 sleep 3
@@ -46,7 +47,7 @@ echo "remove yay-bin..."
 sleep 3
 
 echo "installing apps from AUR..."
-yay -S brave-bin dropbox anki-bin extension-manager --noconfirm
+yay -S brave-bin dropbox anki-bin extension-manager nautilus-dropbox visual-studio-code-bin gnome-shell-extension-pop-shell extension-manager rustdesk local-by-flywheel-bin --noconfirm
 
 
 echo "Set custom shortcuts..."

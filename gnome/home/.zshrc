@@ -70,7 +70,19 @@ ZSH_THEME="simple"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+#
+# 
+#
+#
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf)
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'" 
+
+source <(fzf --zsh)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,8 +120,31 @@ alias ls="lsd"
 alias cat="bat"
 alias ff="fastfetch"
 alias v="nvim"
+alias on="nvim ~/Documents/leo-notes"
+
+#find file by content and open with nvim
+ffc() {
+  local search_string="$1"
+  local search_path="${2:-$(pwd)}"  
+
+  grep -rI --exclude-dir={.git,node_modules} -l "$search_string" "$search_path" | \
+  fzf --preview='bat --color=always {}' | \
+  xargs -r nvim
+}
+
+#find file and open with nvim
+fv() {
+  local file
+  file=$(fd --type f --exclude node_modules --exclude .git . | fzf --preview="bat --color=always {}")
+  if [[ -n "$file" ]]; then
+    nvim "$file"
+  fi
+}
+
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-
+PATH=~/.console-ninja/.bin:$PATH
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/leo/.lmstudio/bin"
